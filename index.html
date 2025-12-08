@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Susanto — Web3 / Backend Developer</title>
+  <meta name="description" content="Personal portfolio of Susanto — Backend & Web3 developer. Node.js, SQLite, Chainlink, Solidity. Projects, certificates, and contact." />
+
+  <meta property="og:title" content="Susanto — Web3 / Backend Developer" />
+  <meta property="og:description" content="Backend & Web3 developer. Node.js, SQLite, Chainlink. Projects, certificates, and contact." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://santsz-xyz.github.io/susanto-dev/" />
+  <meta property="og:image" content="https://santsz-xyz.github.io/susanto-dev/og.png" />
+
+  <meta name="theme-color" content="#0b1220" />
+  <style>
+    :root{
+      --bg:#070b14;
+      --panel:rgba(255,255,255,.06);
+      --panel2:rgba(255,255,255,.09);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.68);
+      --muted2:rgba(255,255,255,.55);
+      --border:rgba(255,255,255,.12);
+      --accent:#5eead4; /* mint */
+      --accent2:#60a5fa; /* blue */
+      --shadow: 0 24px 70px rgba(0,0,0,.55);
+      --radius: 18px;
+      --radius2: 24px;
+      --max: 1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(900px 600px at 20% 0%, rgba(96,165,250,.16), transparent 55%),
+        radial-gradient(800px 600px at 80% 20%, rgba(94,234,212,.14), transparent 60%),
+        radial-gradient(700px 550px at 55% 100%, rgba(167,139,250,.12), transparent 55%),
+        var(--bg);
+      line-height:1.45;
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding: 26px 18px 90px}
+    .nav{
+      position: sticky; top: 0;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(to bottom, rgba(7,11,20,.82), rgba(7,11,20,.35));
+      border-bottom:1px solid rgba(255,255,255,.06);
+      z-index: 50;
+    }
+    .navin{
+      max-width:var(--max);
+      margin:0 auto;
+      padding: 14px 18px;
+      display:flex; align-items:center; justify-content:space-between;
+      gap: 12px;
+    }
+    .brand{display:flex; align-items:center; gap:10px}
+    .logo{
+      width:34px;height:34px;border-radius:12px;
+      background: linear-gradient(135deg, rgba(96,165,250,.95), rgba(94,234,212,.95));
+      box-shadow: 0 18px 55px rgba(96,165,250,.18);
+      position:relative;
+    }
+    .logo:after{
+      content:"";
+      position:absolute; inset: 8px 10px;
+      border-radius: 10px;
+      background: rgba(7,11,20,.55);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    .brand h1{font-size:14px; margin:0}
+    .brand p{font-size:12px; margin:0; color:var(--muted2)}
+    .links{display:flex; flex-wrap:wrap; gap: 8px}
+    .pill{
+      padding: 9px 12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--muted);
+      transition: .18s ease;
+    }
+    .pill:hover{transform: translateY(-1px); border-color: rgba(255,255,255,.2); color: var(--text)}
+    .pill.accent{
+      border-color: rgba(94,234,212,.35);
+      background: rgba(94,234,212,.10);
+      color: rgba(240,255,252,.95);
+    }
+
+    .hero{
+      padding: 48px 0 20px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      align-items: start;
+    }
+    @media (max-width: 920px){ .hero{grid-template-columns: 1fr; padding-top: 32px} }
+    .card{
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+    }
+    .heromain{padding: 26px 22px}
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding: 8px 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .dot{
+      width:8px;height:8px;border-radius:99px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(94,234,212,.12);
+    }
+    .title{
+      margin: 14px 0 10px;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+    .title .grad{
+      background: linear-gradient(90deg, rgba(96,165,250,1), rgba(94,234,212,1));
+      -webkit-background-clip:text; background-clip:text;
+      color:transparent;
+    }
+    .subtitle{
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 62ch;
+    }
+    .cta{display:flex; flex-wrap:wrap; gap:10px; margin-top: 18px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding: 11px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+      transition: .18s ease;
+    }
+    .btn:hover{transform: translateY(-1px); border-color: rgba(255,255,255,.25)}
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(96,165,250,.90), rgba(94,234,212,.90));
+      border-color: rgba(94,234,212,.35);
+      color: rgba(7,11,20,.95);
+    }
+    .btn.primary:hover{filter:saturate(1.1) brightness(1.02)}
+    .meta{
+      margin-top: 18px;
+      display:flex; flex-wrap:wrap; gap: 10px;
+      color: var(--muted2);
+      font-size: 13px;
+    }
+    .tag{
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.10);
+    }
+
+    .side{padding: 18px}
+    .side h3{margin: 0 0 10px; font-size: 14px; color: rgba(255,255,255,.84)}
+    .mini{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius: var(--radius);
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+    .mini p{margin: 8px 0 0; color: var(--muted); font-size: 13px}
+    .row{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+    .chip{
+      font-size: 12px;
+      color: rgba(240,255,252,.92);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(94,234,212,.25);
+      background: rgba(94,234,212,.08);
+    }
+    .chip.blue{
+      border-color: rgba(96,165,250,.25);
+      background: rgba(96,165,250,.09);
+      color: rgba(235,244,255,.92);
+    }
+
+    section{margin-top: 18px}
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+    .col6{grid-column: span 6}
+    .col4{grid-column: span 4}
+    .col8{grid-column: span 8}
+    @media (max-width: 920px){
+      .col6,.col4,.col8{grid-column: span 12}
+    }
+    .section-title{
+      display:flex; align-items:center; justify-content:space-between;
+      gap: 10px;
+      padding: 14px 16px;
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+    }
+    .section-title h2{
+      margin:0;
+      font-size: 14px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.78);
+    }
+    .section-title span{color: var(--muted2); font-size: 13px}
+    .box{padding: 16px}
+    .proj{
+      padding: 16px;
+      border-radius: var(--radius2);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      transition: .18s ease;
+      height: 100%;
+    }
+    .proj:hover{transform: translateY(-2px); border-color: rgba(255,255,255,.20)}
+    .proj h3{margin: 0 0 6px; font-size: 16px}
+    .proj p{margin:0 0 12px; color: var(--muted); font-size: 13.5px}
+    .proj .foot{display:flex; flex-wrap:wrap; gap:8px; align-items:center; justify-content:space-between}
+    .small{font-size: 12px; color: var(--muted2)}
+    .hr{height:1px; background: rgba(255,255,255,.08); margin: 10px 0}
+    .list{margin:0; padding-left: 18px; color: var(--muted); font-size: 13.5px}
+    .list li{margin: 6px 0}
+    footer{margin-top: 26px; color: var(--muted2); font-size: 12px; text-align:center}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace}
+  </style>
+</head>
+
+<body>
+  <div class="nav">
+    <div class="navin">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Susanto</h1>
+          <p>Backend • Web3 • Chainlink</p>
+        </div>
+      </div>
+      <div class="links">
+        <a class="pill" href="#projects">Projects</a>
+        <a class="pill" href="#certs">Certificates</a>
+        <a class="pill" href="#about">About</a>
+        <a class="pill accent" href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="hero">
+      <div class="card heromain">
+        <div class="kicker"><span class="dot"></span> Open to global opportunities • Jakarta (GMT+7)</div>
+        <h2 class="title">
+          Building reliable backends <span class="grad">and verifiable Web3 systems</span>.
+        </h2>
+        <p class="subtitle">
+          I’m <strong>Susanto</strong>, a backend developer transitioning into Web3. I build practical products—APIs, data integrity layers,
+          and smart-contract integrations.
+        </p>
+
+        <div class="cta">
+          <a class="btn primary" href="https://www.linkedin.com/in/susanto-santo-455783321/" target="_blank" rel="noreferrer">View LinkedIn</a>
+          <a class="btn" href="https://github.com/santsz-xyz" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="btn" href="#contact">Hire / Collaborate</a>
+        </div>
+
+        <div class="meta">
+          <span class="tag">Focus: <span class="mono">Node.js • APIs • Solidity • Chainlink</span></span>
+          <span class="tag">Currently building: <span class="mono">Inventory API + Web3 Audit Trail</span></span>
+        </div>
+      </div>
+
+      <aside class="card side">
+        <h3>Highlights</h3>
+
+        <div class="mini">
+          <strong>Chainlink Fundamentals</strong>
+          <p>Proficiency Exam — Cyfrin Updraft. Data Feeds, VRF, Automation, CCIP.</p>
+          <div class="row">
+            <span class="chip">Data Feeds</span>
+            <span class="chip">VRF</span>
+            <span class="chip">Automation</span>
+            <span class="chip blue">CCIP</span>
+          </div>
+        </div>
+
+        <div class="mini">
+          <strong>What I bring</strong>
+          <p>Clean APIs, auth/roles, testable code, and verifiable audit logs anchored on-chain.</p>
+          <div class="row">
+            <span class="chip">REST</span>
+            <span class="chip">JWT</span>
+            <span class="chip">Testing</span>
+            <span class="chip blue">EVM</span>
+          </div>
+        </div>
+
+        <div class="mini">
+          <strong>Quick links</strong>
+          <p class="mono">
+            • github.com/santsz-xyz<br/>
+            • linkedin.com/in/susanto-santo...<br/>
+            • susantosantsz@gmail.com
+          </p>
+        </div>
+      </aside>
+    </div>
+
+    <section id="projects">
+      <div class="section-title">
+        <h2>Projects</h2>
+        <span>Selected work (portfolio-ready)</span>
+      </div>
+
+      <div class="grid box">
+        <div class="col6">
+          <div class="proj">
+            <h3>Inventory API (Node.js + SQLite)</h3>
+            <p>
+              REST API for inventory operations: stock-in/out, low-stock alerts, JWT auth and roles.
+              <br/><span class="small">Next: add Web3 audit layer (hash anchoring on-chain).</span>
+            </p>
+            <div class="foot">
+              <div class="row">
+                <span class="chip">Node.js</span>
+                <span class="chip">Express</span>
+                <span class="chip">SQLite</span>
+                <span class="chip blue">Web3 Audit</span>
+              </div>
+              <a class="pill" href="https://github.com/santsz-xyz/inventory-api" target="_blank" rel="noreferrer">Repo ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col6">
+          <div class="proj">
+            <h3>On-chain Audit Trail (EVM)</h3>
+            <p>
+              Anchors hashes of backend transactions on-chain, enabling tamper-evident verification.
+              <br/><span class="small">Planned: verifier endpoint + explorer links.</span>
+            </p>
+            <div class="foot">
+              <div class="row">
+                <span class="chip blue">Solidity</span>
+                <span class="chip">Hardhat</span>
+                <span class="chip">Ethers</span>
+                <span class="chip">Events</span>
+              </div>
+              <a class="pill" href="#">Demo ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col6">
+          <div class="proj">
+            <h3>Chainlink Integration Demos</h3>
+            <p>
+              Small demos using Chainlink services: Price Feeds, VRF, Automation, CCIP.
+            </p>
+            <div class="foot">
+              <div class="row">
+                <span class="chip">Feeds</span>
+                <span class="chip">VRF</span>
+                <span class="chip">Automation</span>
+                <span class="chip blue">CCIP</span>
+              </div>
+              <a class="pill" href="#">Repo ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col6">
+          <div class="proj">
+            <h3>API Quality Pack</h3>
+            <p>
+              OpenAPI/Swagger, request validation, structured logging, and CI tests for reliability.
+            </p>
+            <div class="foot">
+              <div class="row">
+                <span class="chip">OpenAPI</span>
+                <span class="chip">Jest</span>
+                <span class="chip">Supertest</span>
+                <span class="chip blue">GitHub Actions</span>
+              </div>
+              <a class="pill" href="#contact">Ask for a walkthrough ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="certs">
+      <div class="section-title">
+        <h2>Certificates</h2>
+        <span>Proof of learning & skill growth</span>
+      </div>
+
+      <div class="grid box">
+        <div class="col8">
+          <div class="proj">
+            <h3>Cyfrin Updraft — Chainlink Fundamentals (Proficiency Exam)</h3>
+            <p>
+              Covered oracle fundamentals and core Chainlink services: Data Feeds, VRF, Automation, CCIP (and more).
+            </p>
+            <div class="hr"></div>
+            <ul class="list">
+              <li>Built understanding of trusted data delivery to smart contracts (oracles)</li>
+              <li>Studied verifiable randomness patterns (VRF)</li>
+              <li>Learned automation patterns for reliable execution</li>
+              <li>Introduced cross-chain interoperability concepts (CCIP)</li>
+            </ul>
+            <div class="hr"></div>
+            <div class="foot">
+              <span class="small mono">Credential URL:</span>
+              <a class="pill" href="https://updraft.cyfrin.io/courses/chainlink-fundamentals/final/proficiency-exam" target="_blank" rel="noreferrer">View ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col4">
+          <div class="proj">
+            <h3>Skill stack</h3>
+            <p>Core skills I’m actively using in projects:</p>
+            <ul class="list">
+              <li>Node.js, Express, REST APIs</li>
+              <li>Auth (JWT), RBAC</li>
+              <li>Solidity, EVM</li>
+              <li>Chainlink (Feeds, VRF, Automation, CCIP)</li>
+              <li>Testing & CI</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-title">
+        <h2>About</h2>
+        <span>Short story, clear direction</span>
+      </div>
+
+      <div class="grid box">
+        <div class="col6">
+          <div class="proj">
+            <h3>What I’m focused on</h3>
+            <p>
+              I’m Susanto, a developer transitioning from backend engineering into Web3. I aim to build systems that are both
+              <strong>useful</strong> and <strong>verifiable</strong>—connecting robust APIs with on-chain integrity proofs.
+            </p>
+          </div>
+        </div>
+        <div class="col6">
+          <div class="proj">
+            <h3>What I’m looking for</h3>
+            <p>
+              Roles involving backend development (Node.js), smart-contract integrations, or Web3 product engineering.
+              I enjoy projects where reliability, security, and auditability matter.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <span>Let’s connect</span>
+      </div>
+
+      <div class="grid box">
+        <div class="col6">
+          <div class="proj">
+            <h3>Email</h3>
+            <p class="mono">susantosantsz@gmail.com</p>
+            <p class="small">Feel free to reach out for collaborations or inquiries.</p>
+          </div>
+        </div>
+        <div class="col6">
+          <div class="proj">
+            <h3>Links</h3>
+            <p class="mono">
+              LinkedIn: linkedin.com/in/susanto-santo...<br/>
+              GitHub: github.com/santsz-xyz
+            </p>
+            <p class="small">Check out my pinned repos.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>© <span id="y"></span> Susanto • Built with HTML/CSS • <span class="mono">Fast, simple, deployable</span></p>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
